@@ -1,0 +1,211 @@
+[
+    {
+        "id": 100001,
+        "name": "智能屋1",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 100,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100002,
+        "name": "智能屋2",
+        "onLine": true,
+        "door": true,
+        "lock": true,
+        "flock": true,
+        "signal": 6,
+        "cell": 50,
+        "installDate": "2018-1-1 11:33:23"
+    },
+    {
+        "id": 100003,
+        "name": "智能屋3",
+        "onLine": false,
+        "door": false,
+        "lock": false,
+        "flock": false,
+        "signal": 7,
+        "cell": 20,
+        "installDate": "2018-1-1 11:33:23"
+    }
+]
