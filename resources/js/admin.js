@@ -189,8 +189,8 @@ $(function() {
 var Tab = {
 	addTab: function(title, url) {
 		var index = url.replace(/\./g, '_').replace(/\//g, '_').replace(/:/g, '_').replace(/\?/g, '_').replace(/,/g, '_').replace(/=/g, '_').replace(/&/g, '_');
-		// 如果存在选项卡，则激活，否则创建新选项卡
-		if ($('#tab_' + index).length == 0) {
+		// 如果存在选项卡，则激活，否则创建新选项卡 (原本只判断url,现在还判断title)
+		if ($('#tab_' + index).length == 0 || $('#tab_' + index + ' > a').text() != title) {
 			// 添加选项卡
 			$('.content_tab li').removeClass('cur');
 			var tab = '<li id="tab_' + index +'" data-index="' + index + '" class="cur"><a class="waves-effect waves-light">' + title + '</a></li>';//<i class="zmdi zmdi-close"></i><
@@ -243,7 +243,7 @@ function initScrollState() {
 		$('.tab_right>a').addClass('active');
 	}
 }
-
+// 全屏
 function fullPage() {
 
 	if ($.util.supportsFullScreen) {

@@ -540,6 +540,7 @@ a:focus {
     width: 100%;
     height: 38px;
     overflow: hidden;
+    box-shadow: 0 0 1px #989898 inset;
 }
 
 .content_tab>ul {

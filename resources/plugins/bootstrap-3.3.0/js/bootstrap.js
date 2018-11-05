@@ -923,7 +923,6 @@ if (typeof jQuery === 'undefined') {
     this.$backdrop      =
     this.isShown        = null
     this.scrollbarWidth = 0
-
     if (this.options.remote) {
       this.$element
         .find('.modal-content')

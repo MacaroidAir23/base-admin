@@ -11,38 +11,69 @@
 	<link href="../resources/plugins/bootstrap-table-1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
 	<link href="../resources/plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
 	<link href="../resources/plugins/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
-	<link href="../resources/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+	<!-- <link href="../resources/plugins/select2/css/select2.min.css" rel="stylesheet"/> -->
 
 	<link href="../resources/css/common.css" rel="stylesheet"/>
+
+	<style>
+		span .select2-container {
+     		z-index:10050;
+		}
+	</style>
 </head>
 <body>
 <div id="main">
 	<div id="toolbar">
 		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 添加门锁</a>
-		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 添加分组</a>
+		<a class="waves-effect waves-button" href="javascript:;" onclick="createGroup()"><i class="zmdi zmdi-plus"></i> 添加分组</a>
 		<!-- <a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a> -->
 		<!-- <a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a> -->
 	</div>
-	<table id="table" style="height: 100%"></table>
+	<table id="table"></table>
 </div>
-<!-- 新增 -->
+<!-- 添加门锁 -->
 <div id="createDialog" class="crudDialog" hidden>
 	<form>
 		<div class="form-group">
-			<label for="input1">标题</label>
+			<label for="input1">设备码</label>
 			<input id="input1" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input2">名称</label>
+			<label for="input2">设备名称</label>
 			<input id="input2" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input3">根目录</label>
+			<label for="input3">安装地址</label>
 			<input id="input3" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input4">图标</label>
-			<input id="input4" type="text" class="form-control">
+			<select class="form-control">
+				<option value="NULL">-选择运营商-</option>
+				<option value="192.168.0.1">192.168.0.1</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="input5">公司名称</label>
+			<input id="input5" type="text" class="form-control">
+		</div>
+		<div class="form-group">
+			<select class="form-control">
+				<option value="NULL">-选择网关-</option>
+				<option value="192.168.0.1">192.168.0.1</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="input7">备注信息</label>
+			<input id="input7" type="text" class="form-control">
+		</div>
+	</form>
+</div>
+<!-- 添加分组 -->
+<div id="createGroup" class="crudDialog" hidden>
+	<form>
+		<div class="form-group">
+			<label for="input1">分组名称</label>
+			<input id="input1" type="text" class="form-control">
 		</div>
 	</form>
 </div>
@@ -52,7 +83,7 @@
 <script src="../resources/plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="../resources/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="../resources/plugins/jquery-confirm/jquery-confirm.min.js"></script>
-<script src="../resources/plugins/select2/js/select2.min.js"></script>
+<!-- <script src="../resources/plugins/select2/js/select2.min.js"></script> -->
 
 <script src="../resources/js/common.js"></script>
 <script>
@@ -95,32 +126,35 @@ $(function() {
 		idField: 'systemId',
 		maintainSelected: true,
 		toolbar: '#toolbar',
-		pageSize: 15,
 		columns: [
 			{field: 'state', checkbox: true},
-			{field: 'id', title: '设备码', sortable: true, halign: 'center', align: 'center'},
-			{field: 'name', title: '设备名称', sortable: true, halign: 'center', align: 'center'},
-			{field: 'onLine', title: '在线状态', sortable: true, halign: 'center', align: 'center', formatter: 'onLineFormatter'},
-			{field: 'door', title: '门状态', sortable: true, halign: 'center', align: 'center', formatter: 'doorFormatter'},
-			{field: 'lock', title: '锁状态', sortable: true, halign: 'center', align: 'center', formatter: 'lockFormatter'},
-			{field: 'flock', title: '是否反锁', sortable: true, halign: 'center', align: 'center', formatter: 'flockFormatter'},
-			{field: 'signal', title: '信号强度', sortable: true, halign: 'center', align: 'center', formatter: 'signalFormatter'},
-			{field: 'cell', title: '电池电量', sortable: true, halign: 'center', align: 'center', formatter: 'cellFormatter'},
+			{field: 'id', title: '设备码', sortable: true, halign: 'center', align: 'center', clickToSelect: false},
+			{field: 'name', title: '设备名称', sortable: true, halign: 'center', align: 'center', clickToSelect: false},
+			{field: 'onLine', title: '在线状态', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'onLineFormatter'},
+			{field: 'door', title: '门状态', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'doorFormatter'},
+			{field: 'lock', title: '锁状态', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'lockFormatter'},
+			{field: 'flock', title: '是否反锁', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'flockFormatter'},
+			{field: 'signal', title: '信号强度', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'signalFormatter'},
+			{field: 'cell', title: '电池电量', sortable: true, halign: 'center', align: 'center', clickToSelect: false, formatter: 'cellFormatter'},
 			{field: 'installDate', title: '安装时间', sortable: true, halign: 'center', align: 'center'},
-			{field: 'action', title: '操作', halign: 'center', align: 'left', width: '370px', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
+			{field: 'action', title: '操作', halign: 'center', align: 'left', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false, cellStyle: actionCellStyle}
 		]
 	}).on('all.bs.table', function (e, name, args) {
 		$('[data-toggle="tooltip"]').tooltip();
 		$('[data-toggle="popover"]').popover();  
 	});
 });
+
+/**
+ * data format
+ */
 function actionFormatter(value, row, index) {
     return [
-        '<button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;">开锁</button>',
-        '<button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;">授权管理</button>',
-        '<button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;">密码卡片</button>',
-        '<button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;">开锁记录</button>',
-        '<button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;">门锁信息</button>'
+        '<button type="button" class="btn btn-primary btn-sm open-lock" style="margin-right: 5px;">开锁</button>',
+        '<button type="button" class="btn btn-primary btn-sm permission-manager" style="margin-right: 5px;">授权管理</button>',
+        '<button type="button" class="btn btn-primary btn-sm password-card" style="margin-right: 5px;">密码卡片</button>',
+        '<button type="button" class="btn btn-primary btn-sm open-lock-record" style="margin-right: 5px;">开锁记录</button>',
+        '<button type="button" class="btn btn-primary btn-sm lock-info" style="margin-right: 5px;">门锁信息</button>'
     ].join('');
 }
 function onLineFormatter(value, row, index) {
@@ -169,21 +203,6 @@ function cellFormatter(value, row, index) {
 	}
 	return '<font style="color: #87CEFA;">' + value + '%' + '</font>';;
 }
-
-window.actionEvents = {
-    'click .like': function (e, value, row, index) {
-        alert('You click like icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    },
-    'click .edit': function (e, value, row, index) {
-        alert('You click edit icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    },
-    'click .remove': function (e, value, row, index) {
-        alert('You click remove icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    }
-};
 function detailFormatter(index, row) {
 	var html = [];
 	$.each(row, function (key, value) {
@@ -191,12 +210,54 @@ function detailFormatter(index, row) {
 	});
 	return html.join('');
 }
+
+/**
+ * style format
+ */
+function actionCellStyle(value, row, index) {
+	return {
+		css: {
+			padding: '6px',
+			width: '370px',
+			'min-width': '370px'
+		}
+	}
+}
+
+/**
+ * action event
+ */
+window.actionEvents = {
+    'click .open-lock': function (e, value, row, index) {
+        alert('You click open-lock icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    },
+    'click .permission-manager': function (e, value, row, index) {
+        alert('You click permission-manager icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    },
+    'click .password-card': function (e, value, row, index) {
+		// alert('You click password-card icon, row: ' + JSON.stringify(row));
+		// 调用父窗口的方法
+		parent.window.newTab('密码卡片' + parent.window.$_PASSWORD_CARD_PARAM, '/manager/password-card.html');
+		parent.window.$_PASSWORD_CARD_PARAM++;
+	},
+	'click .open-lock-record': function (e, value, row, index) {
+        alert('You click open-lock-record icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+	},
+	'click .lock-info': function (e, value, row, index) {
+        alert('You click lock-info icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    }
+};
+
 // 新增
 function createAction() {
 	$.confirm({
 		type: 'dark',
 		animationSpeed: 300,
-		title: '新增系统',
+		title: '添加门锁',
 		content: $('#createDialog').html(),
 		buttons: {
 			confirm: {
@@ -213,6 +274,30 @@ function createAction() {
 		}
 	});
 }
+
+// 添加分组
+function createGroup() {
+	$.confirm({
+		type: 'dark',
+		animationSpeed: 300,
+		title: '添加分组',
+		content: $('#createGroup').html(),
+		buttons: {
+			confirm: {
+				text: '确认',
+				btnClass: 'waves-effect waves-button',
+				action: function () {
+					$.alert('确认');
+				}
+			},
+			cancel: {
+				text: '取消',
+				btnClass: 'waves-effect waves-button'
+			}
+		}
+	})
+}
+
 // 编辑
 function updateAction() {
 	var rows = $table.bootstrapTable('getSelections');

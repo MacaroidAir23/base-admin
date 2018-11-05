@@ -81,10 +81,10 @@ body {
     border-radius: 0;
 }
 
-.btn:active {
+/* .btn:active {
     -webkit-box-shadow: none;
     box-shadow: none;
-}
+} */
 
 /* input */
 body .jconfirm {
@@ -105,6 +105,10 @@ body .jconfirm {
 
 .form-group {
     margin-bottom: 20px;
+}
+
+.form-group select {
+    margin-left: -5px;
 }
 
 .form-group label {
