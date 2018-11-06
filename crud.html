@@ -113,6 +113,10 @@ $(function() {
 		$('[data-toggle="popover"]').popover();  
 	});
 });
+
+/**
+ * data format
+ */
 function actionFormatter(value, row, index) {
     return [
         '<a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　',
@@ -121,6 +125,15 @@ function actionFormatter(value, row, index) {
     ].join('');
 }
 
+/**
+ * style format
+ */
+
+
+
+/**
+ * action event
+ */
 window.actionEvents = {
     'click .like': function (e, value, row, index) {
         alert('You click like icon, row: ' + JSON.stringify(row));
