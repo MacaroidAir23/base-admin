@@ -14,20 +14,13 @@
 	<!-- <link href="../resources/plugins/select2/css/select2.min.css" rel="stylesheet"/> -->
 
 	<link href="../resources/css/common.css" rel="stylesheet"/>
-
-	<style>
-		span .select2-container {
-     		z-index:10050;
-		}
-	</style>
 </head>
 <body>
 <div id="main">
 	<div id="toolbar">
 		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 添加门锁</a>
+		<a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除门锁</a>
 		<a class="waves-effect waves-button" href="javascript:;" onclick="createGroup()"><i class="zmdi zmdi-plus"></i> 添加分组</a>
-		<!-- <a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a> -->
-		<!-- <a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a> -->
 	</div>
 	<table id="table"></table>
 </div>
@@ -151,12 +144,39 @@ $(function() {
 function actionFormatter(value, row, index) {
     return [
         '<button type="button" class="btn btn-primary btn-sm open-lock" style="margin-right: 5px;">开锁</button>',
-        '<button type="button" class="btn btn-primary btn-sm permission-manager" style="margin-right: 5px;">授权管理</button>',
+        '<button type="button" class="btn btn-primary btn-sm lock-permission" style="margin-right: 5px;">授权管理</button>',
         '<button type="button" class="btn btn-primary btn-sm password-card" style="margin-right: 5px;">密码卡片</button>',
         '<button type="button" class="btn btn-primary btn-sm open-lock-record" style="margin-right: 5px;">开锁记录</button>',
         '<button type="button" class="btn btn-primary btn-sm lock-info" style="margin-right: 5px;">门锁信息</button>'
     ].join('');
 }
+/**
+ * action event
+ */
+ window.actionEvents = {
+    'click .open-lock': function (e, value, row, index) {
+        alert('You click open-lock icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    },
+    'click .lock-permission': function (e, value, row, index) {
+		// 调用父窗口的变量和方法
+        parent.window.$_CURRENT_FLAT_LOCK_ID = row.id;
+		parent.window.newTab('门锁授权' + row.id, '/manager/lock-permission.html')
+    },
+    'click .password-card': function (e, value, row, index) {
+		parent.window.$_CURRENT_FLAT_LOCK_ID = row.id;
+		parent.window.newTab('密码卡片' + row.id, '/manager/password-card.html');
+	},
+	'click .open-lock-record': function (e, value, row, index) {
+        parent.window.$_CURRENT_FLAT_LOCK_ID = row.id;
+		parent.window.newTab('开锁记录' + row.id, '/manager/unlock-record.html');
+	},
+	'click .lock-info': function (e, value, row, index) {
+        alert('You click lock-info icon, row: ' + JSON.stringify(row));
+        console.log(value, row, index);
+    }
+};
+
 function onLineFormatter(value, row, index) {
 	if (value === false) {
 		return '<font style="color: red;">离线</font>'
@@ -223,34 +243,6 @@ function actionCellStyle(value, row, index) {
 		}
 	}
 }
-
-/**
- * action event
- */
-window.actionEvents = {
-    'click .open-lock': function (e, value, row, index) {
-        alert('You click open-lock icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    },
-    'click .permission-manager': function (e, value, row, index) {
-        alert('You click permission-manager icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    },
-    'click .password-card': function (e, value, row, index) {
-		// alert('You click password-card icon, row: ' + JSON.stringify(row));
-		// 调用父窗口的方法
-		parent.window.newTab('密码卡片' + parent.window.$_PASSWORD_CARD_PARAM, '/manager/password-card.html');
-		parent.window.$_PASSWORD_CARD_PARAM++;
-	},
-	'click .open-lock-record': function (e, value, row, index) {
-        alert('You click open-lock-record icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-	},
-	'click .lock-info': function (e, value, row, index) {
-        alert('You click lock-info icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-    }
-};
 
 // 新增
 function createAction() {
@@ -365,7 +357,7 @@ function deleteAction() {
 					action: function () {
 						var ids = new Array();
 						for (var i in rows) {
-							ids.push(rows[i].systemId);
+							ids.push(rows[i].id);
 						}
 						$.alert('删除：id=' + ids.join("-"));
 					}

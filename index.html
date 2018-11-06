@@ -146,6 +146,8 @@
 				<ul>
 					<li><a class="waves-effect" href="javascript:newTab('公寓门锁', '/manager/flat-lock.html');">公寓门锁</a></li>
 					<li><a class="waves-effect" href="javascript:newTab('密码卡片', '/manager/password-card.html');">密码卡片</a></li>
+					<li><a class="waves-effect" href="javascript:newTab('门锁授权', '/manager/lock-permission.html');">门锁授权</a></li>
+					<li><a class="waves-effect" href="javascript:newTab('开锁记录', '/manager/unlock-record.html');">开锁记录</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu system_menus system_1 15" style="display:none;">
@@ -201,8 +203,11 @@
 
 <script src="resources/js/admin.js"></script>
 <script>
-// 密码卡片页面需要的参数
-var $_PASSWORD_CARD_PARAM = 1;
+
+/**
+ * 全局变量
+ */
+var $_CURRENT_FLAT_LOCK_ID;
 
 function newTab(tabName, path) {
 	Tab.addTab(tabName, path);
