@@ -38,14 +38,14 @@ $(function() {
 		});
 		$('body').attr("id", systemname);
 		$('#system_title').text(systemtitle);
-		$.cookie('talei-device-admin-systemid', systemid);
-		$.cookie('talei-device-admin-systemname', systemname);
-		$.cookie('talei-device-admin-systemtitle', systemtitle);
+		$.cookie('admin-systemid', systemid);
+		$.cookie('admin-systemname', systemname);
+		$.cookie('admin-systemtitle', systemtitle);
 	});
 	// 显示cookie菜单
-	var systemid = $.cookie('talei-device-admin-systemid') || 1;
-	var systemname = $.cookie('talei-device-admin-systemname') || 'talei-device-admin';
-	var systemtitle = $.cookie('talei-device-admin-systemtitle') || '设备管理后台';
+	var systemid = $.cookie('admin-systemid') || 1;
+	var systemname = $.cookie('admin-systemname') || 'admin-upms';
+	var systemtitle = $.cookie('admin-systemtitle') || '设备管理后台';
 	$('.system_menus').hide(0, function () {
 		$('.system_' + systemid).show();
 	});

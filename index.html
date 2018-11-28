@@ -15,9 +15,17 @@
 	
 	<style>
 	/** skins **/
-	#talei-device-admin #header {background: white;}
-	#talei-device-admin .content_tab{background: #fffafa;}
-	#talei-device-admin .s-profile>a{background: #1E90FF;}
+	#admin-upms #header {background: white;}
+	#admin-upms .content_tab{background: #fffafa;}
+	#admin-upms .s-profile>a{background: #1E90FF;}
+
+  #admin-flat #header {background: white;}
+	#admin-flat .content_tab{background: #fffafa;}
+	#admin-flat .s-profile>a{background: 	#00BFFF;}
+
+  #admin-device #header {background: white;}
+	#admin-device .content_tab{background: #fffafa;}
+	#admin-device .s-profile>a{background: 	#00FA9A;}
 	</style>
 </head>
 <body>
@@ -53,7 +61,27 @@
 							</div>
 						</form>
 					</ul>
-				</li>
+        </li>
+        <li class="dropdown">
+            <a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
+              <i class="him-icon zmdi zmdi-dropbox"></i>
+            </a>
+            <ul class="dropdown-menu dm-icon pull-right">
+              <li class="skin-switch">
+                请选择系统切换
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a class="waves-effect switch-systems" href="javascript:;" systemid="1" systemname="admin-upms" systemtitle="权限管理后台"><i class="zmdi zmdi-shield-security"></i> 权限管理系统</a>
+              </li>
+              <li>
+                <a class="waves-effect switch-systems" href="javascript:;" systemid="2" systemname="admin-flat" systemtitle="公寓管理后台"><i class="zmdi zmdi-wikipedia"></i> 公寓管理后台</a>
+              </li>
+              <li>
+                <a class="waves-effect switch-systems" href="javascript:;" systemid="3" systemname="admin-device" systemtitle="设备管理后台"><i class="zmdi zmdi-paypal-alt"></i> 设备管理后台</a>
+              </li>
+            </ul>
+          </li>
 				<li class="dropdown">
 					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
 						<i class="him-icon zmdi zmdi-more-vert"></i>
@@ -113,56 +141,60 @@
 		<!-- 菜单区 -->
 		<ul class="main-menu">
 			<li>
-				<a class="waves-effect" href="javascript:newTab('首页', 'home');"> 后台首页</a>
+				<a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"> 后台首页</a>
 			</li>
-			<li class="sub-menu system_menus system_1 0">
+			<li class="sub-menu system_menus system_3 0">
 				<a class="waves-effect" href="javascript:;"> 智能主机</a>
 				<ul>
 					<li><a class="waves-effect" href="javascript:newTab('系统管理', 'crud.html');">系统管理</a></li>
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 1">
+			<li class="sub-menu system_menus system_3 1">
 				<a class="waves-effect" href="javascript:;"> 红外设备</a>
 				<ul>
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 2">
+			<li class="sub-menu system_menus system_3 2">
 				<a class="waves-effect" href="javascript:;"> 安防传感</a>
 				<ul>
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 3">
+			<li class="sub-menu system_menus system_3 3">
 				<a class="waves-effect" href="javascript:;"> 摄像头</a>
 				<ul>
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 4" style="display:none;">
+			<li class="sub-menu system_menus system_3 4" style="display:none;">
 				<a class="waves-effect" href="javascript:;"> 电源开关</a>
 				<ul>
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 15" style="display:none;">
+			<li class="sub-menu system_menus system_2 15" style="display:none;">
 				<a class="waves-effect" href="javascript:;"> 公寓设备</a>
 				<ul>
-					<li><a class="waves-effect" href="javascript:newTab('公寓门锁', '/manager/flat-lock.html');">公寓门锁</a></li>
-					<li><a class="waves-effect" href="javascript:newTab('密码卡片', '/manager/password-card.html');">密码卡片</a></li>
-					<li><a class="waves-effect" href="javascript:newTab('门锁授权', '/manager/lock-permission.html');">门锁授权</a></li>
-					<li><a class="waves-effect" href="javascript:newTab('开锁记录', '/manager/unlock-record.html');">开锁记录</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('公寓门锁', 'manager/flat-lock.html');">公寓门锁</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('密码卡片', 'manager/password-card.html');">密码卡片</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('门锁授权', 'manager/lock-permission.html');">门锁授权</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('开锁记录', 'manager/unlock-record.html');">开锁记录</a></li>
 				</ul>
 			</li>
 			<li class="sub-menu system_menus system_1 15" style="display:none;">
-				<a class="waves-effect" href="javascript:;"> 用户授权</a>
+        <a class="waves-effect" href="javascript:;"> 权限控制</a>
 				<ul>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('系统应用', 'manager/apply.html');">应用管理</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', 'manager/user.html');">用户管理</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', 'manager/role.html');">角色管理</a></li>
+            <li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', 'manager/permission.html');">权限管理</a></li>   
 				</ul>
 			</li>
-			<li class="sub-menu system_menus system_1 15" style="display:none;">
+			<li class="sub-menu system_menus system_0 15" style="display:none;">
 				<a class="waves-effect" href="javascript:;"> 系统设置</a>
 				<ul>
 				</ul>
 			</li>
 			<li>
 				<div class="upms-version">
-					&copy; ZN-HOMES-ADMIN
+					&copy; BASE-ADMINI
 				</div>
 			</li>
 		</ul>
